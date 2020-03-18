@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class='form-section'>
+    <h1>Add a Pet</h1>
+    <form action="" method='POST' class='artist-form'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type='submit' class='btn'>Save</button>
+    </form>
+  </section>
+
+{% endblock %}

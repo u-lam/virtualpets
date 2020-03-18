@@ -3,7 +3,13 @@ body {
   min-height: 100vh;
   flex-direction: column;
 }
+.nav-wrapper, .page-footer {
+  background-color: rgb(29, 184, 42);
+}
 
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+}
 main {
   flex: 1 0 auto;
 }

@@ -2,9 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Pet
 from .forms import PetForm, FeedingForm
 
-# Create your views here.
-from django.http import HttpResponse
-
 def home(request):
   return render(request, 'home.html')
 
@@ -16,7 +13,9 @@ def pets_index(request):
   return render(request, 'pets/index.html', { 'pets': pets})
 
 def pets_detail(request, pet_id):
+  # Get the ID of one pet 
   pet = Pet.objects.get(id=pet_id)
+  # create a new feeding form to be rendered below with the template
   feeding_form = FeedingForm()
   return render(request, 'pets/detail.html', { 
     'pet': pet, 'feeding_form': feeding_form
@@ -29,3 +28,15 @@ def add_feeding(request, pet_id):
     new_feeding.pet_id = pet_id
     new_feeding.save()
   return redirect('detail', pet_id=pet_id)
+
+def new_pet(request):
+  if request.method == 'POST':
+    form = PetForm(request.POST)
+    if form.is_valid():
+      pet = form.save()
+      return redirect('detail', pet.id)
+  else:
+    form = PetForm()
+    context = { 'form': form }
+    return render(request, 'pets/pet_form.html', context)
+    
