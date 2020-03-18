@@ -9,7 +9,19 @@ MEALS = (
   ('D', 'Dinner')
 )
 
-# Create your models here.
+class Toy(models.Model):
+  name = models.CharField(max_length=50)
+  color = models.CharField(max_length=50)
+  material = models.CharField(max_length=50)
+  
+  def __str__(self):
+    return self.name
+  
+  # this method is required for CBV usage
+  def get_absolute_url(self):
+      return reverse("toys_detail", kwargs={"pk": self.id})
+  
+  
 class Pet(models.Model):
   name = models.CharField(max_length=100)
   breed = models.CharField(max_length=100)

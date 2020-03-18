@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Pet
+from .models import Pet, Toy
 from .forms import PetForm, FeedingForm
 
 def home(request):
@@ -39,4 +39,26 @@ def new_pet(request):
     form = PetForm()
     context = { 'form': form }
     return render(request, 'pets/pet_form.html', context)
-    
+
+
+# ----------- TOYS -----------
+
+# Goes to toy_index.html
+class ToyIndex(ListView):
+  model = Toy
+
+# Goes to toy_detail.html
+class ToyDetail(DetailView):
+  model = Toy
+  
+class ToyCreate(CreateView):
+  model = Toy
+  fields = '__all__'
+  
+class ToyUpdate(UpdateView):
+  model = Toy
+  fields = '__all__'
+  
+class ToyDelete(DeleteView):
+  model = Toy
+  success_url = '/toys/'
