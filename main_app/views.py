@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect
 from .models import Pet, Toy
 from .forms import PetForm, FeedingForm
 
+# class-based views imports
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
+
+
 def home(request):
   return render(request, 'home.html')
 
@@ -15,11 +20,22 @@ def pets_index(request):
 def pets_detail(request, pet_id):
   # Get the ID of one pet 
   pet = Pet.objects.get(id=pet_id)
+  
+  toys_pet_doesnt_have = Toy.objects.exclude(id__in = pet.toys.all().values_list('id'))
+  
   # create a new feeding form to be rendered below with the template
   feeding_form = FeedingForm()
   return render(request, 'pets/detail.html', { 
-    'pet': pet, 'feeding_form': feeding_form
+    'pet': pet, 
+    'feeding_form': feeding_form,
+    'toys': toys_pet_doesnt_have
   })
+  
+  
+def assc_toy(request, pet_id, toy_id):
+  Pet.objects.get(id=pet_id).toys.add(toy_id)
+  return redirect('detail', pet_id=pet_id)
+  
   
 def add_feeding(request, pet_id):
   form = FeedingForm(request.POST)
@@ -28,6 +44,7 @@ def add_feeding(request, pet_id):
     new_feeding.pet_id = pet_id
     new_feeding.save()
   return redirect('detail', pet_id=pet_id)
+
 
 def new_pet(request):
   if request.method == 'POST':

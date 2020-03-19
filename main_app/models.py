@@ -29,12 +29,13 @@ class Pet(models.Model):
   age = models.IntegerField()
   color = models.CharField(max_length=20)
   
+  toys = models.ManyToManyField(Toy)
+  
   def __str__(self):
     return self.name
   
   def fed_for_today(self):
     return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
-  
   
 class Feeding(models.Model):
   date = models.DateField('Feeding Date')
