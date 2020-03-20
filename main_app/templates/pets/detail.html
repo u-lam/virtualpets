@@ -56,9 +56,17 @@
           <div class="card">
             <div class="card-content">
               <span class="card-title">
-                A <span style="color: {{ toy.color }}">{{ toy.color }}</span> {{ toy.name }}
+                A <span style="color: {{ toy.color }}">{{ toy.color }}</span> {{ toy.name }} made of {{ toy.material }}
               </span>
             </div>
+            {% comment %} REMOVE TOY {% endcomment %}
+            <div class="card-action">
+              <form action="{% url 'assc_toy' pet.id toy.id %}" method="delete">
+              {% csrf_token %}
+                <button type="submit" class="btn">Remove</button>
+              </form>
+            </div>
+            {% comment %} END REMOVE TOY {% endcomment %}
           </div>
         {% endfor %}
       {% else %}
@@ -76,12 +84,14 @@
               A <span style="color: {{ toy.color }}">{{ toy.color }}</span> {{ toy.name }} made of {{ toy.material }}
             </span>
           </div>
+          {% comment %} ADD TO PET'S LIST OF TOYS {% endcomment %}
           <div class="card-action">
             <form action="{% url 'assc_toy' pet.id toy.id %}" method="post">
               {% csrf_token %}
               <button type="submit" class="btn">Add to {{ pet.name}}'s List</button>
             </form>
           </div>
+          {% comment %} END ADD ACTION {% endcomment %}
         </div>
       {% endfor %}
     {% else %}
