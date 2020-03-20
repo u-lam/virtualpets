@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # class-based views imports
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView
+
 
 
 def home(request):
@@ -37,14 +37,11 @@ def pets_index(request):
   pets = Pet.objects.filter(user=request.user)
   return render(request, 'pets/index.html', { 'pets': pets})
 
+
 @login_required
 def pets_detail(request, pet_id):
-  # Get the ID of one pet 
   pet = Pet.objects.get(id=pet_id)
-  
   toys_pet_doesnt_have = Toy.objects.exclude(id__in = pet.toys.all().values_list('id'))
-  
-  # create a new feeding form to be rendered below with the template
   feeding_form = FeedingForm()
   return render(request, 'pets/detail.html', { 
     'pet': pet, 
@@ -81,21 +78,43 @@ def new_pet(request):
     return render(request, 'pets/pet_form.html', context)
 
 
+@login_required
+def pets_update(request, pet_id):
+  pet = Pet.objects.get(id=pet_id)
+  
+  if request.method == 'POST':
+    form = PetForm(request.POST, instance=pet)
+    if form.is_valid():
+      pet = form.save()
+      return redirect('detail', pet.id)
+  else:
+    form = PetForm(instance=pet)
+  return render(request, 'pets/pet_form.html', { 'form': form })
+
+
+@login_required
+def pets_delete(request, pet_id):
+  pet = Pet.objects.get(id=pet_id)
+  if request.method == 'POST':
+    pet.delete()
+    return redirect('index')
+  else:  #Get method
+    context = { 'pet': pet } 
+    return render(request, 'pets/pet_confirm_del.html', context)
+  
+  
 # ----------- TOYS -----------
 
-# Goes to toy_index.html
 @login_required
 def toy_index(request):
   toys = Toy.objects.all()
   return render(request, 'toys/toy_index.html', {'toys': toys})
 
-# Goes to toy_detail.html
-class ToyDetail(LoginRequiredMixin, DetailView):
-  model = Toy
-  
-# class ToyCreate(CreateView):
-#   model = Toy
-#   fields = '__all__'
+@login_required
+def toys_detail (request, toy_id):
+  toy = Toy.objects.get(id=toy_id)
+  return render(request, 'toys/toy_detail.html', { 'toy': toy })
+
 
 @login_required
 def new_toy(request):
@@ -109,10 +128,24 @@ def new_toy(request):
     context = { 'form': form }
     return render(request, 'toys/toy_form.html', context) 
   
-class ToyUpdate(LoginRequiredMixin, UpdateView):
-  model = Toy
-  fields = '__all__'
-  
-class ToyDelete(LoginRequiredMixin, DeleteView):
-  model = Toy
-  success_url = '/toys/'
+
+@login_required
+def toys_update(request, toy_id):
+  toy = Toy.objects.get(id=toy_id)
+  if request.method == 'POST':
+    form = ToyForm(request.POST, instance=toy)
+    if form.is_valid():
+      toy = form.save()
+      return redirect('toys_detail', toy.id)
+  else:
+    form = ToyForm(instance=toy)
+  return render(request, 'toys/toy_form.html', {'form': form })
+
+
+@login_required
+def toys_delete(request, toy_id):
+  toy = Toy.objects.get(id=toy_id)
+  if request.method == 'POST':
+    toy.delete()
+    return redirect('toys_index')
+  return render(request, 'toys/toy_confirm_del.html', {'toy': toy })

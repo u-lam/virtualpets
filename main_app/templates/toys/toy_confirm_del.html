@@ -5,7 +5,7 @@
 
   <h4>Are you sure you want to delete <span class='teal-text'>{{ toy.name}}</span>?</h4>
 
-  <form action="" method='POST'>
+  <form action="{% url 'toys_delete' toy.id %}" method='POST'>
   {% csrf_token %}
     <input type="submit" value='Yes' class='btn'>
     <a href="{% url 'toys_detail' toy.id%}">Cancel</a>
