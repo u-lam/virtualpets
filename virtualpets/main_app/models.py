@@ -24,20 +24,18 @@ class Playground(models.Model):
   def __str__(self):
     return self.name
   
-  # this method is required for CBV usage   -- OLD CODE. Keeping here for now in case we need it later.
-  # def get_absolute_url(self):
-  #     return reverse("toys_detail", kwargs={"pk": self.id})
-  
   
 class Pet(models.Model):
   name = models.CharField(max_length=100)
   breed = models.CharField(max_length=100)
   description = models.TextField(max_length=200)
-  age = models.IntegerField()
+  age = models.IntegerField(blank=False)  #required field
   color = models.CharField(max_length=20)
   
+  # null=True will store the value as 'null' in DB fk, 
+  # blank=True here will not require an association, so a pet does NOT have to belong to a user or playground
   playground = models.ForeignKey(Playground, on_delete=models.CASCADE, null=True, blank=True)
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
   
   def __str__(self):
     return self.name
