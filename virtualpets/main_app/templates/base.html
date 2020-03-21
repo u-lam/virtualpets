@@ -23,12 +23,13 @@
           {% if user.is_authenticated %}
             <li><a href="{% url 'index' %}">View All My Pets</a></li>
             <li><a href="{% url 'new_pet' %}">Add a Pet</a></li>
-            <li><a href="{% url 'toys_index' %}">View All Toys</a></li>
-            <li><a href="{% url 'toys_create' %}">Add a Toy</a></li>
+            <li><a href="{% url 'pg_index' %}">View All Playgrounds</a></li>
+            {% comment %} <li><a href="{% url 'toys_create' %}">Add a Toy</a></li> {% endcomment %}
              <li><a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
-           <li><a href="{% url 'login' %}">Log In</a></li>
-           <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'avail_pets' %}">View Available Pets</a></li>
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
           {% endif %}
         </ul> 
       </div>

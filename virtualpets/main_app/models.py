@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from datetime import date
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 
 
@@ -10,28 +11,31 @@ MEALS = (
   ('D', 'Dinner')
 )
 
-class Toy(models.Model):
-  name = models.CharField(max_length=50)
-  color = models.CharField(max_length=20)
-  material = models.CharField(max_length=20)
+# Setting capacity playground at 5 max for easy testing
+class Playground(models.Model):
+  name = models.CharField(max_length=20)
+  virtual_location = models.CharField(max_length=50)
+  current_capacity = models.IntegerField(
+    validators= [MaxValueValidator(5), MinValueValidator(0)])
+  max_capacity = models.IntegerField(
+    validators= [MaxValueValidator(5), MinValueValidator(0)])
+  features = models.TextField(max_length=200)
   
   def __str__(self):
     return self.name
-  
-  # this method is required for CBV usage
-  def get_absolute_url(self):
-      return reverse("toys_detail", kwargs={"pk": self.id})
   
   
 class Pet(models.Model):
   name = models.CharField(max_length=100)
   breed = models.CharField(max_length=100)
   description = models.TextField(max_length=200)
-  age = models.IntegerField()
+  age = models.IntegerField(blank=False)  #required field
   color = models.CharField(max_length=20)
   
-  toys = models.ManyToManyField(Toy)
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  # null=True will store the value as 'null' in DB fk, 
+  # blank=True here will not require an association, so a pet does NOT have to belong to a user or playground
+  playground = models.ForeignKey(Playground, on_delete=models.CASCADE, null=True, blank=True)
+  user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
   
   def __str__(self):
     return self.name
