@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Playground Details</h1>
+
+<div class='row'>
+  <div class='col s6 col-offset-3'>
+    <div class='card'>
+      <div class='card-content'>
+        <span class='card-title'> {{ playground.name }} </span>
+        <p>Virtual Location: {{ playground.virtual_location }} </p>
+        <p>Current capacity: {{ playground.current_capacity }} </p>
+        <p>Max capacity: {{ playground.max_capacity }} </p>
+        <p>Features: {{ playground.features }} </p>
+      </div>
+      <div class='card-action'>
+        <a href="{% url 'pg_update' playground.id %}">Edit</a>
+       {% comment %}  <a href="{% url 'playground_delete' pg.id %}">Delete</a> {% endcomment %}
+      </div> 
+    </div>
+  </div>
+</div>
+
+{% endblock  %}

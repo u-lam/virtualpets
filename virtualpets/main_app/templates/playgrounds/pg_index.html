@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+ <h1>Playgrounds</h1>
+
+{% for playground in playgrounds %}
+  <a href="{% url 'pg_detail' playground.id %}">
+    <div class='card'>
+      <div class='card-content'>
+        <span class='card-title'>{{ playground.name }}</span>
+        <p>Virtual Location: {{ playground.virtual_location }} </p>
+        <p>Current capacity: {{ playground.current_capacity }} </p>
+        <p>Max capacity: {{ playground.max_capacity }} </p>
+        <p>Features: {{ playground.features }} </p>
+      </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}
