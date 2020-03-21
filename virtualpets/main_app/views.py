@@ -35,7 +35,7 @@ def signup(request):
 @login_required
 def pets_index(request):
   pets = Pet.objects.filter(user=request.user)
-  return render(request, 'pets/index.html', { 'pets': pets})
+  return render(request, 'pets/index.html', {'pets': pets})
 
 
 @login_required
