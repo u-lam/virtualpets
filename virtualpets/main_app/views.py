@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Pet, Playground
+# from django.db.models import Q
 from .forms import PetForm, FeedingForm, PlaygroundForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -47,26 +48,29 @@ def pets_index(request):
 @login_required
 def pets_detail(request, pet_id):
   pet = Pet.objects.get(id=pet_id)
+  # showing all pgs for testing purposes
   playgrounds = Playground.objects.all()
-  # playgrounds = Playground.objects.filter(id=pet_id)
-  # avail_playgrounds = Playground.objects.exclude()
-  # playgrounds_pet_not_in = Playground.objects.exclude(id__in = pet.playgrounds.all().values_list('id'))
+  
+  #  Code below currently not working. Need help!
+  playgrounds_pet_not_in = Playground.objects.exclude(id__in = pet.playgrounds.all().values('id'))
+ 
   feeding_form = FeedingForm()
   return render(request, 'pets/detail.html', { 
     'pet': pet, 
     'feeding_form': feeding_form,
     'playgrounds': playgrounds,
-    # 'available playgrounds': avail_playgrounds
+    'available playgrounds': playgrounds_pet_not_in
   })
   
 @login_required 
 def assc_pg(request, pet_id, pg_id):
-  pet = Pet.objects.get(id=pet_id)
-  playground = Playground.objects.get(id=pg_id)
-  # Pet.add(playground)
-  Playground.add(pet)
-  # Pet.objects.get(id=pet_id).playgrounds.add(pg_id)
+  Pet.objects.get(id=pet_id).playgrounds.add(pg_id)
   return redirect('detail', pet_id=pet_id)
+  
+@login_required
+def leave_pg(request, pet_id, pg_id):
+  Pet.objects.get(id=pet_id).playgrounds.remove(pg_id)
+  return redirect('detail', pet_id=pet_id)  
   
 @login_required 
 def add_feeding(request, pet_id):
