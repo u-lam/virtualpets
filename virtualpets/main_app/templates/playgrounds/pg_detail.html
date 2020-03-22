@@ -15,10 +15,16 @@
       </div>
       <div class='card-action'>
         <a href="{% url 'pg_update' playground.id %}">Edit</a>
-       {% comment %}  <a href="{% url 'playground_delete' pg.id %}">Delete</a> {% endcomment %}
+
+        {% comment %} Need to 1) update url and able to select which pet, and 2) increment the current capacity count {% endcomment %}
+        <a href="{% url 'pg_update' playground.id %}">Add Pet to this Playground</a>
+
       </div> 
     </div>
   </div>
 </div>
+
+<h1>Current Pets in Play</h1>
+{% comment %} Add pics/list of pets here - stretch goal {% endcomment %}
 
 {% endblock  %}

@@ -1,12 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% comment %} {% if playground in playgrounds %} {% endcomment %}
-    <h1>Edit <span class="teal-text">{{playground.name}}</span></h1>
-  {% comment %} {% else  %}
-    <h1>Add Playground</h1>
-    
-  {% endif %} {% endcomment %}
+
+    <h1>Edit {{ playground.name }}</h1>
+ 
   <!-- Leaving the action empty so the form posts to the same url -->
   <form action="" method="post">
     {% csrf_token %}
