@@ -4,13 +4,10 @@
 <h1>Available Pet List</h1>
 
 {% for pet in pets %}
-
-{% comment %} if pet does not have a user {% endcomment %}
-{% if pet.User == Null %}
   <div class='card'>
     <a href="{% url 'detail' pet.id %}">
       <div class='card-content'>
-        <span class='card-title'>{{ pet.name }}</span>
+        <span class='card-title'>{{ pet.name|upper }}</span>
         <p>Breed: {{ pet.breed}} </p>
         <p>Description: {{ pet.description}} </p>
         {% if pet.age > 0%}
@@ -21,8 +18,6 @@
       </div>
     </a>
   </div>
-{% endif %}
-
 {% endfor %}
 
 {% endblock %}

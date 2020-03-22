@@ -12,6 +12,7 @@ MEALS = (
 )
 
 # Setting capacity playground at 5 max for easy testing
+# Add a function where the current capacity count increments with pet that's added to the playground
 class Playground(models.Model):
   name = models.CharField(max_length=20)
   virtual_location = models.CharField(max_length=50)
@@ -35,13 +36,14 @@ class Pet(models.Model):
   # null=True will store the value as 'null' in DB fk, 
   # blank=True here will not require an association, so a pet does NOT have to belong to a user or playground
   playground = models.ForeignKey(Playground, on_delete=models.CASCADE, null=True, blank=True)
+  # playgrounds = models.ManyToManyField(Playground)
   user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
   
   def __str__(self):
     return self.name
   
   def fed_for_today(self):
-    return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
+    return self.feeding_set.filter(date=date.today()).count() >= len(MEALS) 
   
 class Feeding(models.Model):
   date = models.DateField('Feeding Date')

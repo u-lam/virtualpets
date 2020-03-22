@@ -54,52 +54,59 @@
   <hr>
   <div class="row">
     <div class="col s6">
-      <h3>{{ pet.name }}'s Toys</h3>
-      {% if pet.toys.count %}
-        {% for toy in pet.toys.all %}
+      <h3>{{ pet.name|upper }}'s Playground</h3>
+      {% if pet.playgrounds.count %}
+        {% for playground in pet.playground.all %}
           <div class="card">
             <div class="card-content">
               <span class="card-title">
-                A <span style="color: {{ toy.color }}">{{ toy.color }}</span> {{ toy.name }} made of {{ toy.material }}
+                Hello test {{ playground.name }} {{ playground.features }}
               </span>
             </div>
             {% comment %} REMOVE TOY {% endcomment %}
             <div class="card-action">
-              <form action="{% url 'assc_toy' pet.id toy.id %}" method="delete">
+              <form action="{% url 'assc_toy' pet.id playground.id %}" method="delete">
               {% csrf_token %}
-                <button type="submit" class="btn">Remove</button>
+                <button type="submit" class="btn">Leave Playground</button>
               </form>
             </div>
             {% comment %} END REMOVE TOY {% endcomment %}
           </div>
         {% endfor %}
       {% else %}
-        <h5>{{ pet.name }} has no toys :(</h5>
+        <h5>{{ pet.name }} is currently not playing</h5>
       {% endif %}
     </div>
 
   <div class="col s6">
-    <h3>Available Toys</h3>
-    {% if toys.count %}
-      {% for toy in toys.all %}
+    <h3>Available Playgrounds</h3>
+    {% if playgrounds.count %}
+      {% for playground in playgrounds%}
         <div class="card">
-          <div class="card-content">
-            <span class="card-title">
-              A <span style="color: {{ toy.color }}">{{ toy.color }}</span> {{ toy.name }} made of {{ toy.material }}
-            </span>
-          </div>
-          {% comment %} ADD TO PET'S LIST OF TOYS {% endcomment %}
-          <div class="card-action">
-            <form action="{% url 'assc_toy' pet.id toy.id %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="btn">Add to {{ pet.name}}'s List</button>
-            </form>
-          </div>
+
+          <a href="{% url 'pg_detail' playground.id %}">
+          <div class='card'>
+            <div class='card-content'>
+              <span class='card-title'>{{ playground.name }}</span>
+              <p>Virtual Location: {{ playground.virtual_location }} </p>
+              <p>Current capacity: {{ playground.current_capacity }} </p>
+              <p>Max capacity: {{ playground.max_capacity }} </p>
+              <p>Features: {{ playground.features }} </p>
+            </div>
+          {% comment %} ADD TO PET'S LIST OF TOYS {% endcomment %} 
+            <div class="card-action">
+              <form action="{% url 'assc_pg' pet.id playground.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">Play in ths playground </button>
+              </form>
+            </div>
           {% comment %} END ADD ACTION {% endcomment %}
-        </div>
+          </div>
+        </div>  
       {% endfor %}
+
     {% else %}
-      <h5>{{pet.name}} Already Has All Toys Available</h5>
+      <h5>No playground available</h5>
     {% endif %}
   </div>
 </div>
