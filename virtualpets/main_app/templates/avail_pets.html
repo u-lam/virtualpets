@@ -1,24 +1,58 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Available Pet List</h1>
+<h1 id="title">Available Pets</h1>
 
-{% for pet in pets %}
-  <div class='card'>
-    <a href="{% url 'detail' pet.id %}">
-      <div class='card-content'>
-        <span class='card-title'>{{ pet.name|upper }}</span>
-        <p>Breed: {{ pet.breed}} </p>
-        <p>Description: {{ pet.description}} </p>
-         <p>Color: {{ pet.color}} </p>
-        {% if pet.age > 0%}
-          <p>Age: {{ pet.age}} </p>
-        {% else %}
-          <p>Age: Little baby</p>
-        {% endif %}
-      </div>
-    </a>
+<div class="container-fluid">
+  <div class="row">
+    {% for pet in pets %}
+    
+      <div class="col-md-4">
+        <div class="card border border-warning">
+          <div class="card-header text-muted border-bottom border-warning">
+            <a href="{% url 'detail' pet.id %}" class="btn btn-outline-warning btn-block" role="button">{{ pet.name|upper }}</a>
+          </div>
+            <div class="card-body">
+              <p>Breed: {{ pet.breed}} </p>
+              <p>Description: {{ pet.description}} </p>
+              {% if pet.age > 0%}
+              <p>Age: {{ pet.age}} </p>
+              {% else %}
+              <p>Age: Little baby</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+    {% endfor %}
   </div>
-{% endfor %}
+</div>
 
 {% endblock %}
+<!-- 
+<h1 id="title">Available Pets</h1>
+
+<div class="container-fluid">
+  <div class="row">
+    {% for pet in pets %}
+    
+      <div class="col-md-4">
+        <div class="card border border-warning">
+          <div class="card-header text-muted border-bottom border-warning">
+            <a href="{% url 'detail' pet.id %}" class="btn btn-outline-warning btn-block" role="button">{{ pet.name|upper }}</a>
+          </div>
+            <div class="card-body">
+              <p>Breed: {{ pet.breed}} </p>
+              <p>Description: {{ pet.description}} </p>
+              {% if pet.age > 0%}
+              <p>Age: {{ pet.age}} </p>
+              {% else %}
+              <p>Age: Little baby</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+    {% endfor %}
+  </div>
+</div> -->

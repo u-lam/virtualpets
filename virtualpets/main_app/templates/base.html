@@ -9,23 +9,84 @@
   <title>Pet Collector</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <!-- Jquery-->
+  <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery-3.4.1.slim.js">
+  </script> 
+
   <!-- Bootstrap below -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <!-- END of Bootstrap -->
 
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Rancho&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Permanent+Marker&display=swap" rel="stylesheet"> 
+
   <!-- END OF FONTS -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+
 </head>
 <body>
   <header class="navbar-fixed">
-    <nav>
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="collapse_target">
+        
+        <a id="title" href="/" class=" navbar-brand left brand-logo text-warning">&nbsp;&nbsp;Virtual Pets</a>
+
+        <ul class="navbar-nav ml-auto">  
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a id="signup" class="nav-link" href="{% url 'index' %}">My Pets</a>
+            </li>
+
+            <li class="nav-item">
+              <a id="signup" class="nav-link" href="{% url 'new_pet' %}">Add a Pet</a>
+            </li>
+
+            <li class="nav-item">
+              <a id="signup" class="nav-link" href="{% url 'pg_index' %}">Playgrounds</a>
+            </li>
+          
+            <li class="nav-item">
+              <a id="signup" class="nav-link" href="{% url 'logout' %}">Log Out</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a id="signup" class="nav-link" href="{% url 'avail_pets' %}">Available Pets</a>
+            </li>
+
+            <li class="nav-item">
+              <a id="signup" class="nav-link" href="{% url 'about' %}">About Us</a>
+            </li>
+            
+            <li class="nav-item">
+              <a id="signup" class="nav-link border border-warning" href="{% url 'signup' %}">Sign Up</a>
+            </li>
+
+            <li class="nav-item">
+              <a id="signup" class="nav-link" href="{% url 'login' %}">Log In</a>
+            </li>
+            {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+  <header class="navbar-fixed">
+    <!-- <nav>
       <div class="nav-wrapper">
         <ul>
-          <li><a id="title" href="/" class="left brand-logo text-warning">&nbsp;&nbsp;Virtual Pets</a></li>
+          <li><a id="title" href="/" class=" navbar-brand left brand-logo text-warning">&nbsp;&nbsp;Virtual Pets</a>
+          </li>
         </ul>
+
         <ul class="right">
           <li><a class="text-muted" href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
@@ -40,9 +101,11 @@
             <li><a class="text-muted" href="{% url 'signup' %}">Sign Up</a></li>
           {% endif %}
         </ul> 
+
       </div>
-    </nav>
+    </nav> -->
   </header>
+
   <main class="container">
     {% block content %}
     {% endblock %}
