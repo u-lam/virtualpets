@@ -50,6 +50,13 @@ def pets_detail(request, pet_id):
   pet = Pet.objects.get(id=pet_id)
   playgrounds_pet_not_in = Playground.objects.exclude(id__in = pet.playgrounds.all().values_list('id'))
   feeding_form = FeedingForm()
+  # TESTING
+  # playground = Playground.objects.all()
+  # print('he', pet)
+  # print('hel', playground)
+  # print('hello', pet.playgrounds)
+  # print('hello', playground.pets)
+  
   return render(request, 'pets/detail.html', { 
     'pet': pet, 
     'feeding_form': feeding_form,
@@ -60,7 +67,6 @@ def pets_detail(request, pet_id):
 def assc_pg(request, pet_id, pg_id):
   pet = Pet.objects.get(id=pet_id)
   playground = Playground.objects.get(id=pg_id) 
-
   # Add pg to pet
   pet.playgrounds.add(pg_id)
   # Increment pet count

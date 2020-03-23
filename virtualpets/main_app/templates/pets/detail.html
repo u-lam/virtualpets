@@ -265,12 +265,16 @@
                       {% endif %}
                     </div>
                     {% comment %} ADD TO PET'S LIST OF PGs {% endcomment %}
+                    {% if pet.playgrounds.count == 1 %}
+                    {% comment %} if pet has 1 playground, don't show the "Play" button {% endcomment %}
+                    {% else %}
                     <div class="card-action border-top border-warning">
                       <form action="{% url 'assc_pg' pet.id playground.id %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-warning">Play in this playground</button>
+                          <button type="submit" class="btn btn-warning">Play in this playground</button>
                       </form>
                     </div>
+                    {% endif %}
                     {% comment %} END ADD ACTION {% endcomment %}
                   </div>
                   {% endfor %}
