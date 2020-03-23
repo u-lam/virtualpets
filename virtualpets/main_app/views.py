@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Pet, Playground
 from django.db.models import Q, F, Exists
 from django.core.exceptions import ValidationError
-from .forms import PetForm, FeedingForm, PlaygroundForm
+from .forms import PetForm, FeedingForm, PlaygroundForm, UserForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -153,3 +153,18 @@ def pg_update(request, pg_id):
   else:
     form = PlaygroundForm(instance=playground)
   return render(request, 'playgrounds/pg_form.html', {'form': form })
+
+def user_profile(request):
+  return render(request, 'users/profile.html')
+
+# def user_delete(request, user_id):
+
+def user_update(request):
+  user = request.user
+  if request.method == 'POST':
+    user_form = UserForm(request.POST, instance=user)
+    if user_form.is_valid():
+      user = user_form.save()
+      return redirect('user_profile')
+  form = UserForm(instance=user)
+  return render(request, 'users/user_form.html', {'form': form})
