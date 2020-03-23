@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <!-- Jquery-->
-  <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery-3.4.1.slim.js">
+  <script type="text/javascript" src="{{ STATIC_URL }}/static/jquery-3.4.1.slim.js">
   </script> 
 
   <!-- Bootstrap below -->
@@ -52,6 +52,10 @@
             <li class="nav-item">
               <a id="signup" class="nav-link" href="{% url 'pg_index' %}">Playgrounds</a>
             </li>
+            
+            <li class="nav-item">
+              <a id="signup" class="nav-link" href="{% url 'about' %}">About Us</a>
+            </li>
           
             <li class="nav-item">
               <a id="signup" class="nav-link" href="{% url 'logout' %}">Log Out</a>
@@ -76,34 +80,6 @@
         </ul>
       </div>
     </nav>
-  </header>
-
-
-  <header class="navbar-fixed">
-    <!-- <nav>
-      <div class="nav-wrapper">
-        <ul>
-          <li><a id="title" href="/" class=" navbar-brand left brand-logo text-warning">&nbsp;&nbsp;Virtual Pets</a>
-          </li>
-        </ul>
-
-        <ul class="right">
-          <li><a class="text-muted" href="{% url 'about' %}">About</a></li>
-          {% if user.is_authenticated %}
-            <li><a class="text-muted" href="{% url 'index' %}">View All My Pets</a></li>
-            <li><a class="text-muted" href="{% url 'new_pet' %}">Add a Pet</a></li>
-            <li><a class="text-muted" href="{% url 'pg_index' %}">View All Playgrounds</a></li>
-            {% comment %} <li><a  class="text-muted" href="{% url 'toys_create' %}">Add a Toy</a></li> {% endcomment %}
-             <li><a class="text-muted" href="{% url 'logout' %}">Log Out</a></li>
-          {% else %}
-            <li><a class="text-muted" href="{% url 'avail_pets' %}">View Available Pets</a></li>
-            <li><a class="text-muted" href="{% url 'login' %}">Log In</a></li>
-            <li><a class="text-muted" href="{% url 'signup' %}">Sign Up</a></li>
-          {% endif %}
-        </ul> 
-
-      </div>
-    </nav> -->
   </header>
 
   <main class="container">
