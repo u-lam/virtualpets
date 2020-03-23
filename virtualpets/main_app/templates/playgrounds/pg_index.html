@@ -9,9 +9,15 @@
       <div class='card-content'>
         <span class='card-title'>{{ playground.name }}</span>
         <p>Virtual Location: {{ playground.virtual_location }} </p>
-        <p>Current capacity: {{ playground.current_capacity }} </p>
-        <p>Max capacity: {{ playground.max_capacity }} </p>
         <p>Features: {{ playground.features }} </p>
+       {% if playground.current_capacity == playground.max_capacity %}
+          <br>
+          <p style="color:red">Sorry, this playground is full. Try another playground!</p>
+        {% else %}
+          <p>Current capacity: {{ playground.current_capacity }} </p>
+          <p>Max capacity: {{ playground.max_capacity }} </p>    
+        {% endif %}
+        
       </div>
     </div>
   </a>

@@ -73,8 +73,6 @@ def assc_pg(request, pet_id, pg_id):
   # Increment pet count
   if playground.current_capacity < playground.max_capacity:
     Playground.objects.filter(id=pg_id).update(current_capacity=F('current_capacity') + 1)
-  else: 
-    error_message = 'Max capacity reached. Try a different playground'
   
   # HELP: if pet is already in a pg (pet.playground.count == 1), do not add more pg. 
   return redirect('detail', pet_id=pet_id)   
