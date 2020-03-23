@@ -106,7 +106,7 @@
                 <h5>{{ pet.name }} is currently not playing</h5>
                 {% endif %}
               </p>
-            </div>
+                </div>
           </div>
         </div>
 
@@ -126,20 +126,30 @@
                     </h2>
                     <div class='card-content text-dark'>
                       <p>Virtual Location: {{ playground.virtual_location }} </p>
-                      <p>Current capacity: {{ playground.current_capacity }} </p>
-                      <p>Max capacity: {{ playground.max_capacity }} </p>
                       <p>Features: {{ playground.features }} </p>
+                      {% if playground.current_capacity == playground.max_capacity %}
+                        <br>
+                        <p style="color:red">Sorry, this playground is full. Try another playground!</p>
+                      {% else %}
+                        <p>Current capacity: {{ playground.current_capacity }} </p>
+                        <p>Max capacity: {{ playground.max_capacity }} </p>
+                      {% endif %}
                     </div>
                     {% comment %} ADD TO PET'S LIST OF PGs {% endcomment %}
+                    {% if pet.playgrounds.count == 1 %}
+                    {% comment %} if pet has 1 playground, don't show the "Play" button {% endcomment %}
+                    {% else %}
                     <div class="card-action border-top border-warning">
                       <form action="{% url 'assc_pg' pet.id playground.id %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-warning">Play in this playground</button>
+                          <button type="submit" class="btn btn-warning">Play in this playground</button>
                       </form>
                     </div>
+                    {% endif %}
                     {% comment %} END ADD ACTION {% endcomment %}
                   </div>
                   {% endfor %}
+
                   {% else %}
                   <h5>No playground available</h5>
                   {% endif %}
