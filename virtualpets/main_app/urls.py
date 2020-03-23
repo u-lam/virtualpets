@@ -18,6 +18,9 @@ urlpatterns = [
   path('pg/', views.pg_index, name='pg_index'),
   path('pg/<int:pg_id>/', views.pg_detail, name='pg_detail'),
   path('pg/<int:pg_id>/update/', views.pg_update, name='pg_update'),
- 
+
+  path('user/profile/', views.user_profile, name='user_profile'),
+  path('user/update/', views.user_update, name='user_update'),
+
   path('accounts/signup', views.signup, name='signup'),
 ]
