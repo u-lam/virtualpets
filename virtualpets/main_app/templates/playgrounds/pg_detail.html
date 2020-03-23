@@ -27,7 +27,7 @@
 
 
 {% comment %} HELP - how to show only the pets associated with this pg {% endcomment %}
-<h1>Current Pets in Play</h1>
+<h1>My Pets </h1>
 {% for pet in pets %}
   <div class='card'>
     <a href="{% url 'detail' pet.id %}">
