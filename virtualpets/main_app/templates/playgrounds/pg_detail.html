@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <h1>Playground Details</h1>
+
+  <div class='row'>
+    <div class='col s6 col-offset-3'>
+      <div class='card'>
+        <div class='card-content'>
+          <span class='card-title'> {{ playground.name }} </span>
+          <p>Virtual Location: {{ playground.virtual_location }} </p>
+          <p>Current capacity: {{ playground.current_capacity }} </p>
+          <p>Max capacity: {{ playground.max_capacity }} </p>
+          <p>Features: {{ playground.features }} </p>
+        </div>
+        <div class='card-action'>
+          <a href="{% url 'pg_update' playground.id %}">Edit</a>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+
+<h1>Current Pets in Play</h1>
+{% for pet in pets %}
+  <div class='card'>
+    <a href="{% url 'detail' pet.id %}">
+      <div class='card-content'>
+        <span class='card-title'>{{ pet.name }}</span>
+        <p>Breed: {{ pet.breed}} </p>
+        <p>Description: {{ pet.description}} </p>
+        <p>Color: {{ pet.color}} </p>
+        {% if pet.age > 0%}
+          <p>Age: {{ pet.age}} </p>
+        {% else %}
+          <p>Age: Little baby</p>
+        {% endif %}
+      </div>
+    </a>
+  </div>
+{% endfor %}
+
+{% endblock  %}

@@ -1,5 +1,58 @@
 {% extends 'base.html' %}
 
 {% block content%}
-  <h1>Uyen's PetWorld!</h1>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron vertical-center border border-warning mt-4">
+				<h1 id="title" class="text-center">
+					Adopt a Virtual Pet
+        </h1>
+        <!-- animal moving  -->
+        <div class="container">
+          <div class="wrapper">
+            <div class="ballons">
+              <div class="heart">
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <div class="animal">
+              <div class="ears"></div>
+              <div class="body">
+                <div class="eyes"></div>
+                <div class="nose">
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="hands">
+                  <div class="left_hand">
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div class="right_hand">
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="legs">
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- end of animal  -->
+				
+				<div class="col text-center">
+					<a class="btn-warning btn-large" href="#">Adopt a Pet</a>
+        </div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock content %}
+
+
