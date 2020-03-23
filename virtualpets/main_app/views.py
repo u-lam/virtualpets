@@ -77,6 +77,7 @@ def leave_pg(request, pet_id, pg_id):
     Playground.objects.filter(id=pg_id).update(current_capacity=F('current_capacity') - 1)
   return redirect('detail', pet_id=pet_id)  
   
+  
 @login_required 
 def add_feeding(request, pet_id):
   form = FeedingForm(request.POST)
@@ -85,6 +86,7 @@ def add_feeding(request, pet_id):
     new_feeding.pet_id = pet_id
     new_feeding.save()
   return redirect('detail', pet_id=pet_id)
+
 
 @login_required
 def new_pet(request):
@@ -133,6 +135,7 @@ def pg_index(request):
   playgrounds = Playground.objects.all()
   return render(request, 'playgrounds/pg_index.html', {'playgrounds': playgrounds })
 
+
 @login_required
 def pg_detail (request, pg_id):
   playground = Playground.objects.get(id=pg_id)
@@ -141,6 +144,7 @@ def pg_detail (request, pg_id):
     'playground': playground,
     'pets': pets
   })
+
 
 @login_required
 def pg_update(request, pg_id):
