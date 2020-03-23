@@ -1,12 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
-  <section class='form-section'>
-    <h1>Add a Pet</h1>
-    <form action="" method='POST' class='artist-form'>
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type='submit' class='btn'>Save</button>
-    </form>
-  </section>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card border border-warning">
+			  <h1 class="card-header" id="title">Add a Pet</h1>
+
+				<div class="card-body">
+					<form action="" method='POST' class='artist-form'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type='submit' class='btn btn-warning'>Save</button>
+          </form>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
 
 {% endblock %}
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+			  <h1 class="card-header" id="title">Add a Pet</h1>
+
+				<div class="card-body">
+					<form action="" method='POST' class='artist-form'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type='submit' class='btn btn-warning'>Save</button>
+          </form>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
