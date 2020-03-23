@@ -19,9 +19,12 @@
 
   <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Rancho&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Permanent+Marker&display=swap" rel="stylesheet"> 
+
   <!-- END OF FONTS -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+
 </head>
 <body>
   <header class="navbar-fixed">
@@ -37,38 +40,39 @@
         <a id="title" href="/" class=" navbar-brand left brand-logo text-warning">&nbsp;&nbsp;Virtual Pets</a>
 
         <ul class="navbar-nav ml-auto">  
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About Us</a>
-          </li>
           {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'index' %}">View all my Pets</a>
+              <a id="signup" class="nav-link" href="{% url 'index' %}">My Pets</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'new_pet' %}">Add a Pet</a>
+              <a id="signup" class="nav-link" href="{% url 'new_pet' %}">Add a Pet</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'pg_index' %}">View All</a>
+              <a id="signup" class="nav-link" href="{% url 'pg_index' %}">Playgrounds</a>
             </li>
           
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+              <a id="signup" class="nav-link" href="{% url 'logout' %}">Log Out</a>
             </li>
           {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'avail_pets' %}">View Available Pets</a>
-            </li>
-          
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Log In</a>
+              <a id="signup" class="nav-link" href="{% url 'avail_pets' %}">Available Pets</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+              <a id="signup" class="nav-link" href="{% url 'about' %}">About Us</a>
             </li>
-          {% endif %}
+            
+            <li class="nav-item">
+              <a id="signup" class="nav-link border border-warning" href="{% url 'signup' %}">Sign Up</a>
+            </li>
+
+            <li class="nav-item">
+              <a id="signup" class="nav-link" href="{% url 'login' %}">Log In</a>
+            </li>
+            {% endif %}
         </ul>
       </div>
     </nav>
