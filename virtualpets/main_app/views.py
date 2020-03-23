@@ -48,21 +48,14 @@ def pets_index(request):
 @login_required
 def pets_detail(request, pet_id):
   pet = Pet.objects.get(id=pet_id)
-  # showing all pgs for testing purposes
-  playgrounds = Playground.objects.all()
-  
-  # HELP:  Code below currently not working
   playgrounds_pet_not_in = Playground.objects.exclude(id__in = pet.playgrounds.all().values_list('id'))
- 
   feeding_form = FeedingForm()
   return render(request, 'pets/detail.html', { 
     'pet': pet, 
     'feeding_form': feeding_form,
-    'playgrounds': playgrounds,
-    'available playgrounds': playgrounds_pet_not_in
+    'playgrounds': playgrounds_pet_not_in
   })
 
-  
 @login_required 
 def assc_pg(request, pet_id, pg_id):
   pet = Pet.objects.get(id=pet_id)
@@ -74,7 +67,7 @@ def assc_pg(request, pet_id, pg_id):
   if playground.current_capacity < playground.max_capacity:
     Playground.objects.filter(id=pg_id).update(current_capacity=F('current_capacity') + 1)
   
-  # HELP: if pet is already in a pg (pet.playground.count == 1), do not add more pg. 
+  # HELP: if pet is already in a pg (pet.playgrounds.count == 1), do not add more pg. 
   return redirect('detail', pet_id=pet_id)   
   
   
