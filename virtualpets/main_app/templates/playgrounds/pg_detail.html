@@ -22,8 +22,7 @@
 
 
 <h1>Current Pets in Play</h1>
-{% for pet in playground.pets.all %}
-
+{% for pet in pets %}
   <div class='card'>
     <a href="{% url 'detail' pet.id %}">
       <div class='card-content'>

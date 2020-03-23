@@ -51,7 +51,7 @@ def pets_detail(request, pet_id):
   # showing all pgs for testing purposes
   playgrounds = Playground.objects.all()
   
-  #  Code below currently not working. Need help!
+  # HELP:  Code below currently not working
   playgrounds_pet_not_in = Playground.objects.exclude(id__in = pet.playgrounds.all().values_list('id'))
  
   feeding_form = FeedingForm()
@@ -61,34 +61,22 @@ def pets_detail(request, pet_id):
     'playgrounds': playgrounds,
     'available playgrounds': playgrounds_pet_not_in
   })
-  
-  
-  
-# @login_required 
-# def assc_pg(request, pet_id, pg_id):
-#   Pet.objects.get(id=pet_id).playgrounds.add(pg_id)
-#   return redirect('detail', pet_id=pet_id)
-  
+
   
 @login_required 
 def assc_pg(request, pet_id, pg_id):
   pet = Pet.objects.get(id=pet_id)
   playground = Playground.objects.get(id=pg_id) 
-  # form = PlaygroundForm()
+
   # Add pg to pet
   pet.playgrounds.add(pg_id)
   # Increment pet count
-  # if request.method == 'POST':
-  #   form = PlaygroundForm()
   if playground.current_capacity < playground.max_capacity:
     Playground.objects.filter(id=pg_id).update(current_capacity=F('current_capacity') + 1)
   else: 
-  # Need to add a max-limit
-  # if playground.current_capacity == playground.max_capacity:
     error_message = 'Max capacity reached. Try a different playground'
   
-  # if pet is already in a pg (pet.playground.count == 1), do not add more pg. 
-  
+  # HELP: if pet is already in a pg (pet.playground.count == 1), do not add more pg. 
   return redirect('detail', pet_id=pet_id)   
   
   
@@ -96,8 +84,9 @@ def assc_pg(request, pet_id, pg_id):
 @login_required
 def leave_pg(request, pet_id, pg_id):
   Pet.objects.get(id=pet_id).playgrounds.remove(pg_id)
-  Playground.objects.filter(id=pg_id).update(current_capacity=F('current_capacity') - 1)
-  # Need to add a min limit
+  playground = Playground.objects.get(id=pg_id) 
+  if playground.current_capacity > 0:
+    Playground.objects.filter(id=pg_id).update(current_capacity=F('current_capacity') - 1)
   return redirect('detail', pet_id=pet_id)  
   
 @login_required 
@@ -160,9 +149,11 @@ def pg_index(request):
 def pg_detail (request, pg_id):
   playground = Playground.objects.get(id=pg_id)
   pets = Pet.objects.filter(user=request.user)
+  
+  # HELP:  How to filter this so only pets that are in this playground shows up. Right now, all user's pets shows up
   return render(request, 'playgrounds/pg_detail.html', {
     'playground': playground,
-    'pets': pets 
+    'pets': pets
   })
 
 
@@ -191,12 +182,3 @@ def pg_update(request, pg_id):
   else:
     form = PlaygroundForm(instance=playground)
   return render(request, 'playgrounds/pg_form.html', {'form': form })
-
-
-# @login_required
-# def toys_delete(request, toy_id):
-#   toy = Toy.objects.get(id=toy_id)
-#   if request.method == 'POST':
-#     toy.delete()
-#     return redirect('toys_index')
-#   return render(request, 'toys/toy_confirm_del.html', {'toy': toy })
