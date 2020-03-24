@@ -62,33 +62,33 @@ def pets_detail(request, pet_id):
   playgrounds_pet_not_in = Playground.objects.exclude(id__in = pet.playgrounds.all().values_list('id'))
   feeding_form = FeedingForm()
 
-  return render(request, 'pets/detail.html', { 
-    'pet': pet, 
+  return render(request, 'pets/detail.html', {
+    'pet': pet,
     'feeding_form': feeding_form,
     'playgrounds': playgrounds_pet_not_in
   })
 
 
-@login_required 
+@login_required
 def assc_pg(request, pet_id, pg_id):
   pet = Pet.objects.get(id=pet_id)
-  playground = Playground.objects.get(id=pg_id) 
+  playground = Playground.objects.get(id=pg_id)
   pet.playgrounds.add(pg_id)
   if playground.current_capacity < playground.max_capacity:
     Playground.objects.filter(id=pg_id).update(current_capacity=F('current_capacity') + 1)
-  return redirect('detail', pet_id=pet_id)   
-  
-  
+  return redirect('detail', pet_id=pet_id)
+
+
 @login_required
 def leave_pg(request, pet_id, pg_id):
   Pet.objects.get(id=pet_id).playgrounds.remove(pg_id)
-  playground = Playground.objects.get(id=pg_id) 
+  playground = Playground.objects.get(id=pg_id)
   if playground.current_capacity > 0:
     Playground.objects.filter(id=pg_id).update(current_capacity=F('current_capacity') - 1)
-  return redirect('detail', pet_id=pet_id)  
+  return redirect('detail', pet_id=pet_id)
 
-  
-@login_required 
+
+@login_required
 def add_feeding(request, pet_id):
   form = FeedingForm(request.POST)
   if form.is_valid():
@@ -116,7 +116,7 @@ def new_pet(request):
 @login_required
 def pets_update(request, pet_id):
   pet = Pet.objects.get(id=pet_id)
-  
+
   if request.method == 'POST':
     form = PetForm(request.POST, instance=pet)
     if form.is_valid():
@@ -136,8 +136,8 @@ def pets_delete(request, pet_id):
   else:  #GET method
     context = { 'pet': pet } 
     return render(request, 'pets/pet_confirm_del.html', context)
-  
-  
+
+
 # ----------- PLAYGROUNDS -----------
 
 @login_required
@@ -166,7 +166,6 @@ def pg_update(request, pg_id):
       return redirect('pg_detail', playground.id)
   else:
     form = PlaygroundForm(instance=playground)
-  return render(request, 'playgrounds/pg_form.html', {'form': form })
   return render(request, 'playgrounds/pg_form.html', {'form': form })
 
 
