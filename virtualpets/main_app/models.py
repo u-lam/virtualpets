@@ -11,8 +11,6 @@ MEALS = (
   ('D', 'Dinner')
 )
 
-# Setting capacity playground at 5 max for easy testing
-# Add a function where the current capacity count increments with pet that's added to the playground
 class Playground(models.Model):
   name = models.CharField(max_length=20)
   virtual_location = models.CharField(max_length=50)
@@ -31,9 +29,6 @@ class Playground(models.Model):
   def get_absolute_url(self):
     return reverse("pg_detail", kwargs={"pk": self.id})
   
-
-    
-  
 class Pet(models.Model):
   name = models.CharField(max_length=100)
   breed = models.CharField(max_length=100)
@@ -44,7 +39,6 @@ class Pet(models.Model):
   # null=True is db-related; will store the value as 'null' in DB fk, 
   # blank=True is validation-related; here it will not require an association, so a pet does NOT have to belong to a user or playground
   # related_name lets us defining a meaningful name for the reverse relationship
-  # playground = models.ForeignKey(Playground, on_delete=models.CASCADE, null=True, blank=True)
   playgrounds = models.ManyToManyField(Playground, blank=True, related_name='pets')
   user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='pets')
   

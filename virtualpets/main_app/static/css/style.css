@@ -11,6 +11,16 @@ body {
 font-family: 'Rancho', cursive;;
 }
 
+#logotitle{
+  font-family: 'Rancho', cursive;;
+  font-size: 40px;
+  }
+
+#pagetitle{
+  font-family: 'Rancho', cursive;;
+  font-size: 50px;
+  }
+
 h1 {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -23,8 +33,33 @@ footer {
   text-align: right;
 }
 
+#signup{
+  font-family: 'Fredoka One', cursive;
+}
 
+#img{
+  height: 250px;
+  width: 250px;
+}
+#petImg{
+  height: 100px;
+  width: 100px;
+}
 
+#engImg{
+  height: 200px;
+  width: 200px;
+}
+
+#menuR{
+  position: absolute;
+  right: 5%;
+}
+
+#protitle{
+  font-family: 'Rancho', cursive;;
+  font-size: 70px;
+  }
 
 /* animal css  */
 
