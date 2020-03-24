@@ -65,24 +65,30 @@ Select a pet they want to play with (association). A user can have many pets.
 Update pet info (pet update)
 
 <h3>Wireframes</h3>
-<img src="virtualpets/virtualpets/main_app/static/images/home.png">
-<img src="virtualpets/virtualpets/main_app/static/images/about.png">
-<img src="virtualpets/virtualpets/main_app/static/images/petindex.png">
-<img src="virtualpets/virtualpets/main_app/static/images/petdetails.png">
-<img src="virtualpets/virtualpets/main_app/static/images/pgindex.png">
-<img src="virtualpets/virtualpets/main_app/static/images/pgdetails.png">
+<img src="virtualpets/main_app/static/images/home.png">
+<img src="virtualpets/main_app/static/images/about.png">
+<img src="virtualpets/main_app/static/images/petindex.png">
+<img src="virtualpets/main_app/static/images/petdetails.png">
+<img src="virtualpets/main_app/static/images/pgindex.png">
+<img src="virtualpets/main_app/static/images/pgdetails.png">
 
 <h3>Data Model</h3>
-<img src="virtualpets/virtualpets/main_app/static/images/model.png">
+<img src="virtualpets/main_app/static/images/model.png">
 
 <h3> Milestones</h3>
-* Getting user Auth to work
-* Remove toy associations since the project was based off lab/homework
-* Playground model/view/templates. Decided to not go full CRUD
-* Added concept of wild pets, pets that have no owners. Figured out how to display them for non*logged in users
-* Got forms working for user edit and pet creation/edits
-* Materialize stripped out, replaced with Bootstrap
-* Created home/about pages
-* Fixed not letting pets be part of multiple playgrounds, their owner must remove them from a playrgound before placing them in another.
-* Added full CRUD for User.
-* Added ability to let wild pets become adopted
+    <lu>
+        <li>Getting user Auth to work</li>
+        <li>Remove toy associations since the project was based off lab/homework</li>
+        <li>Playground model/view/templates. Decided to not go full CRUD</li>
+        <li>Added concept of wild pets, pets that have no owners. Figured out how to display them for non*logged in users</li>
+        <li>Got forms working for user edit and pet creation/edits</li>
+        <li>Materialize stripped out, replaced with Bootstrap</li>
+        <li>Created home/about pages</li>
+    <li>Fixed not letting pets be part of multiple playgrounds, their owner must remove them from a playrgound before placing them in another.</li>
+        <li>Added full CRUD for User.</li>
+        <li>Added ability to let wild pets become adopted</li>
+    </lu>
+
+<h3>Delegation</h3>
+
+We let everyone pick what they wanted to work on so Eddie ended up tackling most of the styling and Uyen and Steven focused mostly on backend parts of the project. There was some overlap and paired programming so everyone got to see and work on both frond and back end
