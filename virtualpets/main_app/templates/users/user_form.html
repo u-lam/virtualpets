@@ -2,22 +2,22 @@
 {% block content %}
 
 <div class="container-fluid">
-		<div class="row">
-				<div class="col-md-12">
-						<div class="card border border-warning mt-4">
-								<h1 class="card-header border-bottom border-warning" id="title">Add a Pet</h1>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card border border-warning mt-4">
+				<h1 class="card-header border-bottom border-warning" id="title">Add a Pet</h1>
 
-								<div class="card-body">
-										<form action="" method='POST' class='artist-form'>
-												{% csrf_token %}
-												{{ form.as_p }}
-												<button type='submit' class='btn btn-warning'>Save</button>
-										</form>
-								</div>
-
-						</div>
+				<div class="card-body">
+					<form action="" method='POST' class='artist-form'>
+						{% csrf_token %}
+						{{ form.as_p }}
+						<button type='submit' class='btn btn-warning'>Save</button>
+					</form>
 				</div>
+
+			</div>
 		</div>
+	</div>
 </div>
 
 {% endblock %}
