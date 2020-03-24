@@ -90,7 +90,7 @@ def leave_pg(request, pet_id, pg_id):
   if playground.current_capacity > 0:
     Playground.objects.filter(id=pg_id).update(current_capacity=F('current_capacity') - 1)
   return redirect('detail', pet_id=pet_id)  
-  
+
   
 @login_required 
 def add_feeding(request, pet_id):

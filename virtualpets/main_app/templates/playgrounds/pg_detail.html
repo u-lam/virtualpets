@@ -1,47 +1,91 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <h1>Playground Details</h1>
-
-  <div class='row'>
-    <div class='col s6 col-offset-3'>
-      <div class='card'>
-        <div class='card-content'>
-          <span class='card-title'> {{ playground.name }} </span>
+<div class="container-fluid">
+  <h1 id="title" class="text-center mt-3">Playgrounds Details</h1>
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-6">
+      <div class="card border border-warning">
+        <a href="{% url 'pg_detail' playground.id %}">
+          <div class="card-header text-dark text-center border-bottom border-warning">
+            <h1 id="title">{{ playground.name }}</h1>
+          </div>
+        </a>
+        <div class="card-body">
           <p>Virtual Location: {{ playground.virtual_location }} </p>
           <p>Features: {{ playground.features }} </p>
           {% if playground.current_capacity == playground.max_capacity %}
-            <br>
-            <p style="color:red">Sorry, this playground is full. Try another playground!</p>
+          <br>
+          <p style="color:red">Sorry, this playground is full. Try another playground!</p>
           {% else %}
-            <p>Current capacity: {{ playground.current_capacity }} </p>
-            <p>Max capacity: {{ playground.max_capacity }} </p>
+          <p>Current capacity: {{ playground.current_capacity }} </p>
+          <p>Max capacity: {{ playground.max_capacity }} </p>
           {% endif %}
         </div>
-        <div class='card-action'>
-          <a href="{% url 'pg_update' playground.id %}">Edit</a>
-        </div> 
+
+        
+          <div class='card-footer'>
+            <a class="btn btn-warning" href="{% url 'pg_update' playground.id %}">Edit</a>
+          </div>
+        
+
       </div>
     </div>
   </div>
+</div>
 
-<h1>Current Pets Playing: </h1>
-{% for pet in pets %}
-  <div class='card'>
-    <a href="{% url 'detail' pet.id %}">
-      <div class='card-content'>
-        <span class='card-title'>{{ pet.name }}</span>
-        <p>Breed: {{ pet.breed}} </p>
-        <p>Description: {{ pet.description}} </p>
-        <p>Color: {{ pet.color}} </p>
-        {% if pet.age > 0%}
-          <p>Age: {{ pet.age}} </p>
-        {% else %}
-          <p>Age: Little baby</p>
-        {% endif %}
-      </div>
-    </a>
+
+<div class="container-fluid">
+  <h1 id="title" class="text-center mt-3">Current Pets Playing</h1>
+
+  <div class="row">
+    {% for pet in pets %}
+      <div class="col-md-4">
+        <div class="card border border-warning">
+          <div class="card-header text-muted text-center border-bottom border-warning">
+            <img id="petImg" alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/I/51YMP-xHfXL.png" class="rounded mb-2"/>
+            <a href="{% url 'detail' pet.id %}" class="btn btn-outline-warning btn-block" role="button">{{ pet.name }}</a>
+          </div>
+            <div class="card-body">
+              <p>Breed: {{ pet.breed}} </p>
+              <p>Description: {{ pet.description}} </p>
+              <p>Color: {{ pet.color}} </p>
+              {% if pet.age > 0%}
+              <p>Age: {{ pet.age}} </p>
+              {% else %}
+              <p>Age: Little baby</p>
+              {% endif %}
+            </div>
+           
+          </div>
+        </div>
+    {% endfor %}
   </div>
-{% endfor %}
+</div>
 
 {% endblock  %}
+
+<div class="container-fluid">
+  <div class="row">
+    {% for pet in pets %}
+      <div class="col-md-4">
+        <div class="card border border-warning">
+          <div class="card-header text-muted text-center border-bottom border-warning">
+            <img id="petImg" alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/I/51YMP-xHfXL.png" class="rounded mb-2"/>
+            <a href="{% url 'detail' pet.id %}" class="btn btn-outline-warning btn-block" role="button">{{ pet.name }}</a>
+          </div>
+            <div class="card-body">
+              <p>Breed: {{ pet.breed}} </p>
+              <p>Description: {{ pet.description}} </p>
+              <p>Color: {{ pet.color}} </p>
+              {% if pet.age > 0%}
+              <p>Age: {{ pet.age}} </p>
+              {% else %}
+              <p>Age: Little baby</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+</div>

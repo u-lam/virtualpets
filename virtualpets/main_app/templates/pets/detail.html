@@ -136,7 +136,7 @@
                       {% endif %}
                     </div>
                     {% comment %} ADD TO PET'S LIST OF PGs {% endcomment %}
-                    {% if pet.playgrounds.count == 1 %}
+                    {% if pet.playgrounds.count == 1 or playground.current_capacity == playground.max_capacity %}
                     {% comment %} if pet has 1 playground, don't show the "Play" button {% endcomment %}
                     {% else %}
                     <div class="card-action border-top border-warning">
