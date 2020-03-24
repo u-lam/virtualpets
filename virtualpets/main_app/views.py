@@ -21,6 +21,17 @@ def avail_pets(request):
   pets = Pet.objects.filter(user=None)
   return render(request, 'avail_pets.html', { 'pets': pets })
 
+def adopt_pet(request, pet_id):
+  pet = Pet.objects.get(id=pet_id)
+  pets = Pet.objects.filter(user=request.user)
+  wild_pets = Pet.objects.filter(user=None)
+  user = request.user
+  user.pets.add(pet)
+  return render(request, 'pets/index.html', {
+    'pets': pets,
+    'avail_pets': wild_pets
+  })
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
@@ -40,8 +51,11 @@ def signup(request):
 @login_required
 def pets_index(request):
   pets = Pet.objects.filter(user=request.user)
-  wild_pets = Pet.objects.exclude(user=request.user)
-  return render(request, 'pets/index.html', {'pets': pets, 'wild_pets': wild_pets})
+  wild_pets = Pet.objects.filter(user=None)
+  return render(request, 'pets/index.html', {
+    'pets': pets,
+    'avail_pets': wild_pets
+  })
 
 
 @login_required
@@ -156,9 +170,7 @@ def pg_update(request, pg_id):
       return redirect('pg_detail', playground.id)
   else:
     form = PlaygroundForm(instance=playground)
-<<<<<<< HEAD
   return render(request, 'playgrounds/pg_form.html', {'form': form })
-=======
   return render(request, 'playgrounds/pg_form.html', {'form': form })
 
 def user_profile(request):
@@ -175,4 +187,3 @@ def user_update(request):
       return redirect('user_profile')
   form = UserForm(instance=user)
   return render(request, 'users/user_form.html', {'form': form})
->>>>>>> 9a9e2cf0e569f1b430b9573ef7108660df6bec63

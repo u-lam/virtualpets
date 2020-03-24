@@ -11,7 +11,7 @@ class PlaygroundForm(forms.ModelForm):
 class PetForm(forms.ModelForm):
   class Meta:
     model = Pet
-    fields = ['name', 'breed', 'description', 'age']
+    fields = ['name', 'breed', 'description', 'color', 'age']
    
 class FeedingForm(forms.ModelForm):
   class Meta:
@@ -19,6 +19,6 @@ class FeedingForm(forms.ModelForm):
     fields = ['date', 'meal']
 
 class UserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'email')
+  class Meta:
+    model = User
+    fields = ('first_name', 'last_name', 'email')
