@@ -11,7 +11,6 @@
       </h1>
       <div class="row">
 
-
         <div class="col-md-6">
           <div class="card border border-warning">
             <h3 class="card-header border-bottom border-warning">
@@ -21,9 +20,9 @@
             <p class="ml-3">Description: {{ pet.description }}</p>
             <p class="ml-3">Color: {{ pet.description }}</p>
             {% if pet.age > 0 %}
-            <p class="ml-3">Age: {{ pet.age }}</p>
+              <p class="ml-3">Age: {{ pet.age }}</p>
             {% else %}
-            <p class="ml-3">Age: Little baby</p>
+              <p class="ml-3">Age: Little baby</p>
             {% endif %}
             <div class='card-action border-top border-warning'>
               <a class="btn btn-warning" href="{% url 'pets_update' pet.id %}">Edit</a>
@@ -31,7 +30,6 @@
             </div>
           </div>
         </div>
-
 
         <div class="col-md-6">
           <div class="card border border-warning">
@@ -43,9 +41,9 @@
               </form>
               <br>
               {% if pet.fed_for_today %}
-              <div class="card-panel teal-text center-align">{{pet.name}} has been fed all meals for today</div>
+                <div class="card-panel teal-text center-align">{{pet.name}} has been fed all meals for today</div>
               {% else %}
-              <div class="card-panel red-text center-align">{{pet.name}} might be hungry</div>
+                <div class="card-panel red-text center-align">{{pet.name}} might be hungry</div>
               {% endif %}
               <table class="striped">
                 <thead>
@@ -56,19 +54,17 @@
                 </thead>
                 <tbody>
                   {% for feeding in pet.feeding_set.all %}
-                  <tr>
-                    <td>{{feeding.date}}</td>
-                    <td>{{feeding.get_meal_display}}</td>
-                  </tr>
+                    <tr>
+                      <td>{{feeding.date}}</td>
+                      <td>{{feeding.get_meal_display}}</td>
+                    </tr>
                   {% endfor %}
                 </tbody>
               </table>
             </h5>
           </div>
         </div>
-
       </div>
-
 
       <div class="row">
 
@@ -87,26 +83,24 @@
                       {{ playground.name }}
                     </h2>
                     <div class='card-content text-dark'>
-                      <p>Virtual Location: {{ playground.virtual_location }} </p>
+                      <p>Location: {{ playground.virtual_location }} </p>
                       <p>Current capacity: {{ playground.current_capacity }} </p>
                       <p>Max capacity: {{ playground.max_capacity }} </p>
                       <p>Features: {{ playground.features }} </p>
                     </div>
-                    {% comment %} LEAVE PG {% endcomment %}
                     <div class="card-action  border-top border-warning">
                       <form action="{% url 'leave_pg' pet.id playground.id %}" method="post">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-warning">Leave Playground</button>
                       </form>
                     </div>
-                    {% comment %} END REMOVE TOY {% endcomment %}
                 </div>
                 {% endfor %}
                 {% else %}
                 <h5>{{ pet.name }} is currently not playing</h5>
                 {% endif %}
               </p>
-                </div>
+            </div>
           </div>
         </div>
 
@@ -118,49 +112,44 @@
             <div class="card-body">
               <p class="card-text">
                 {% if playgrounds.count %}
-                {% for playground in playgrounds.all %}
-                <a href="{% url 'pg_detail' playground.id %}">
-                  <div class='card border border-warning text-dark'>
-                    <h2 id="title" class="card-header border-bottom border-warning text-dark">
-                      {{ playground.name }}
-                    </h2>
-                    <div class='card-content text-dark'>
-                      <p>Virtual Location: {{ playground.virtual_location }} </p>
-                      <p>Features: {{ playground.features }} </p>
-                      {% if playground.current_capacity == playground.max_capacity %}
-                        <br>
-                        <p style="color:red">Sorry, this playground is full. Try another playground!</p>
-                      {% else %}
-                        <p>Current capacity: {{ playground.current_capacity }} </p>
-                        <p>Max capacity: {{ playground.max_capacity }} </p>
-                      {% endif %}
-                    </div>
-                    {% comment %} ADD TO PET'S LIST OF PGs {% endcomment %}
-                    {% if pet.playgrounds.count == 1 %}
-                    {% comment %} if pet has 1 playground, don't show the "Play" button {% endcomment %}
-                    {% else %}
-                    <div class="card-action border-top border-warning">
-                      <form action="{% url 'assc_pg' pet.id playground.id %}" method="post">
-                        {% csrf_token %}
-                          <button type="submit" class="btn btn-warning">Play in this playground</button>
-                      </form>
-                    </div>
-                    {% endif %}
-                    {% comment %} END ADD ACTION {% endcomment %}
-                  </div>
-                  {% endfor %}
+                  {% for playground in playgrounds.all %}
+                    <a href="{% url 'pg_detail' playground.id %}">
+                    <div class='card border border-warning text-dark'>
+                      <h2 id="title" class="card-header border-bottom border-warning text-dark">
+                        {{ playground.name }}
+                      </h2>
+                      <div class='card-content text-dark'>
+                        <p>Location: {{ playground.virtual_location }} </p>
+                        <p>Features: {{ playground.features }} </p>
+                        {% if playground.current_capacity == playground.max_capacity %}
+                          <br>
+                          <p style="color:red">Sorry, this playground is full. Try another playground!</p>
+                        {% else %}
+                          <p>Current capacity: {{ playground.current_capacity }} </p>
+                          <p>Max capacity: {{ playground.max_capacity }} </p>
+                        {% endif %}
+                      </div>
 
-                  {% else %}
-                  <h5>No playground available</h5>
-                  {% endif %}
+                      {% if pet.playgrounds.count == 1 %}
+                      {% comment %} if pet has 1 playground, don't show the "Play" button {% endcomment %}
+                      {% else %}
+                      <div class="card-action border-top border-warning">
+                        <form action="{% url 'assc_pg' pet.id playground.id %}" method="post">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-warning">Play in this playground</button>
+                        </form>
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+                {% else %}
+                <h5>No playground available</h5>
+                {% endif %}
               </p>
             </div>
           </div>
         </div>
-
       </div>
-
-
     </div>
   </div>
 </div>

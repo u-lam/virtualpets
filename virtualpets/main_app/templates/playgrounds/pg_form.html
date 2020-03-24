@@ -22,24 +22,3 @@
 	</div>
 </div>
 {% endblock %}
-
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="card border border-warning">
-			  <h1 class="card-header" id="title">Edit {{ playground.name }}</h1>
-
-				<div class="card-body">
-					<form action="" method="post">
-            {% csrf_token %}
-            <table>
-              {{ form.as_table }}
-            </table>
-            <input type="submit" value="Submit!" class="btn">
-          </form>
-				</div>
-				
-			</div>
-		</div>
-	</div>
-</div>
