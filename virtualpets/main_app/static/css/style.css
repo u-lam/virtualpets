@@ -36,6 +36,15 @@ footer {
   width: 100px;
 }
 
+#engImg{
+  height: 100px;
+  width: 100px;
+}
+
+#menuR{
+  position: absolute;
+  right: 5%;
+}
 
 /* animal css  */
 
