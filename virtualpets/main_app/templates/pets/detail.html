@@ -129,13 +129,13 @@
                           <p>Max capacity: {{ playground.max_capacity }} </p>
                         {% endif %}
                       </div>
-
-                      {% if pet.playgrounds.count == 1 %}
-                      {% comment %} if pet has 1 playground, don't show the "Play" button {% endcomment %}
-                      {% else %}
-                      <div class="card-action border-top border-warning">
-                        <form action="{% url 'assc_pg' pet.id playground.id %}" method="post">
-                          {% csrf_token %}
+                    
+                    {% if pet.playgrounds.count == 1 or playground.current_capacity == playground.max_capacity %}
+                    {% comment %} if pet has 1 playground, don't show the "Play" button {% endcomment %}
+                    {% else %}
+                    <div class="card-action border-top border-warning">
+                      <form action="{% url 'assc_pg' pet.id playground.id %}" method="post">
+                        {% csrf_token %}
                           <button type="submit" class="btn btn-warning">Play in this playground</button>
                         </form>
                       </div>
