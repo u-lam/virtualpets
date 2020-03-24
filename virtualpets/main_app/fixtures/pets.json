@@ -1,0 +1,62 @@
+[
+  {
+    "model": "main_app.pet",
+    "pk": 1,
+    "fields": {
+      "name": "Tubbs",
+      "description": "I love to eat and be lazy. Nothing beats naps and treats.",
+      "color": "yellow",
+      "age": 3,
+      "playgrounds": [],
+      "user": null
+    }
+  },
+  {
+    "model": "main_app.pet",
+    "pk": 2,
+    "fields": {
+      "name": "Chubbs",
+      "description": "The world is my oyster...And I also love oysters. Seafood is great!",
+      "color": "blue",
+      "age": 5,
+      "playgrounds": [],
+      "user": null
+    }
+  },
+  {
+    "model": "main_app.pet",
+    "pk": 3,
+    "fields": {
+      "name": "Grubbs",
+      "description": "Grubbin' is life! Especially when I don't have to catch or cook it.",
+      "color": "green",
+      "age": 7,
+      "playgrounds": [],
+      "user": null
+    }
+  },
+  {
+    "model": "main_app.pet",
+    "pk": 4,
+    "fields": {
+      "name": "Scrubbs",
+      "description": "I'm called scrubs but I technically scratch.",
+      "color": "white",
+      "age": 7,
+      "playgrounds": [],
+      "user": null
+    }
+  },
+  {
+    "model": "main_app.pet",
+    "pk": 5,
+    "fields": {
+      "name": "whubbs",
+      "description": "I'm the clumsy one. Surprised I've lived this long.",
+      "color": "orange",
+      "age": 9,
+      "playgrounds": [],
+      "user": null
+    }
+  }
+]
