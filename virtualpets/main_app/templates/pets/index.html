@@ -1,30 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 id="title" class="ml-3">My Pets</h1>
 
 <div class="container-fluid">
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 id="pagetitle" class="ml-3 mt-3 mb-3 text-center">My Pets</h1>
+      </div>
+      <div class="col-md-6 text-center">
+        <a href="{% url 'new_pet' %}" class="ml-3 mt-3 mb-3 justify-content-center" role="button">
+          <img id="petImg" alt="Bootstrap Image Preview" src="../static/images/add.png" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+
   <div class="row">
     {% for pet in pets %}
-      <div class="col-md-4">
-        <div class="card border border-warning">
-          <div class="card-header text-muted text-center border-bottom border-warning">
-            <img id="petImg" alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/I/51YMP-xHfXL.png" class="rounded mb-2"/>
-                    <h1 id="title">{{user}}</h1>
-            <a href="{% url 'detail' pet.id %}" class="btn btn-outline-warning btn-block" role="button">{{ pet.name }}</a>
-          </div>
-            <div class="card-body">
-              <p>Breed: {{ pet.breed}} </p>
-              <p>Description: {{ pet.description}} </p>
-              <p>Color: {{ pet.color}} </p>
-              {% if pet.age > 0%}
-              <p>Age: {{ pet.age}} </p>
-              {% else %}
-              <p>Age: Little baby</p>
-              {% endif %}
-            </div>
-          </div>
+    <div class="col-md-4">
+      <div class="card border border-warning">
+        <div class="card-header text-muted text-center border-bottom border-warning">
+          <img id="petImg" alt="Bootstrap Image Preview"
+            src="https://images-na.ssl-images-amazon.com/images/I/51YMP-xHfXL.png" class="rounded mb-2" />
+          <a href="{% url 'detail' pet.id %}" class="btn btn-outline-warning btn-block" role="button">{{ pet.name }}</a>
         </div>
+        <div class="card-body">
+          <p>Breed: {{ pet.breed}} </p>
+          <p>Description: {{ pet.description}} </p>
+          <p>Color: {{ pet.color}} </p>
+          {% if pet.age > 0%}
+          <p>Age: {{ pet.age}} </p>
+          {% else %}
+          <p>Age: Little baby</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
     {% endfor %}
   </div>
 </div>
@@ -33,35 +48,35 @@
 <div class="container-fluid">
   <div class="row">
     {% for pet in avail_pets %}
-      <div class="col-md-4">
-        <div class="card border border-warning">
-          <div class="card-header text-muted border-bottom border-warning">
-            <a href="{% url 'detail' pet.id %}" class="btn btn-outline-warning btn-block" role="button">{{ pet.name|upper }}</a>
-          </div>
-          <div class="card-body">
-            <p>Breed: {{ pet.breed}} </p>
-            <p>Description: {{ pet.description}} </p>
-            <p>Color: {{ pet.color}} </p>
-            {% if pet.age > 0%}
-              <p>Age: {{ pet.age}} </p>
-            {% else %}
-              <p>Age: Little baby</p>
-            {% endif %}
-          </div>
-          <div class='card-action'>
-            {% if user.is_authenticated %}
-              <a href="{% url 'adopt_pet' pet.id %}">Adopt Me!</a>
-            {% else %}
-              <p style="color:blue" align='center'>Log in to adopt me!</p>
-            {% endif %}
-          </div>
+    <div class="col-md-4">
+      <div class="card border border-warning">
+        <div class="card-header text-muted text-center border-bottom border-warning">
+          <img id="petImg" alt="Bootstrap Image Preview"
+            src="https://images-na.ssl-images-amazon.com/images/I/51YMP-xHfXL.png" class="rounded mb-2" />
+          <a href="{% url 'detail' pet.id %}" class="btn btn-outline-warning btn-block"
+            role="button">{{ pet.name|upper }}</a>
+        </div>
+        <div class="card-body">
+          <p>Breed: {{ pet.breed}} </p>
+          <p>Description: {{ pet.description}} </p>
+          <p>Color: {{ pet.color}} </p>
+          {% if pet.age > 0%}
+          <p>Age: {{ pet.age}} </p>
+          {% else %}
+          <p>Age: Little baby</p>
+          {% endif %}
+        </div>
+        <div class='card-action'>
+          {% if user.is_authenticated %}
+          <a class="btn btn-warning" href="{% url 'adopt_pet' pet.id %}">Adopt Me!</a>
+          {% else %}
+          <p style="color:blue" align='center'>Log in to adopt me!</p>
+          {% endif %}
         </div>
       </div>
+    </div>
     {% endfor %}
   </div>
 </div>
 
 {% endblock %}
-
-
-
