@@ -8,9 +8,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-# class-based views imports
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
 def home(request):
   return render(request, 'home.html')
 
@@ -31,6 +28,7 @@ def adopt_pet(request, pet_id):
     'pets': pets,
     'avail_pets': wild_pets
   })
+
 
 def signup(request):
   error_message = ''
@@ -75,9 +73,7 @@ def pets_detail(request, pet_id):
 def assc_pg(request, pet_id, pg_id):
   pet = Pet.objects.get(id=pet_id)
   playground = Playground.objects.get(id=pg_id) 
-  # Add pg to pet
   pet.playgrounds.add(pg_id)
-  # Increment pet count
   if playground.current_capacity < playground.max_capacity:
     Playground.objects.filter(id=pg_id).update(current_capacity=F('current_capacity') + 1)
   return redirect('detail', pet_id=pet_id)   
@@ -137,7 +133,7 @@ def pets_delete(request, pet_id):
   if request.method == 'POST':
     pet.delete()
     return redirect('index')
-  else:  #Get method
+  else:  #GET method
     context = { 'pet': pet } 
     return render(request, 'pets/pet_confirm_del.html', context)
   
@@ -173,11 +169,15 @@ def pg_update(request, pg_id):
   return render(request, 'playgrounds/pg_form.html', {'form': form })
   return render(request, 'playgrounds/pg_form.html', {'form': form })
 
+
+# ----------- USERS -----------
+
+@login_required
 def user_profile(request):
   return render(request, 'users/profile.html')
 
-# def user_delete(request, user_id):
 
+@login_required
 def user_update(request):
   user = request.user
   if request.method == 'POST':
@@ -187,3 +187,12 @@ def user_update(request):
       return redirect('user_profile')
   form = UserForm(instance=user)
   return render(request, 'users/user_form.html', {'form': form})
+
+
+@login_required
+def user_delete(request):
+  user = request.user
+  if request.method == 'POST':
+    user.delete()
+    return redirect('home')
+  return render(request, 'users/user_confirm_del.html', { 'user': user })

@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -25,7 +24,7 @@
 
                 <div class='card-action border-top border-warning'>
                     <a class="btn btn-warning" href="{% url 'user_update' %}">Edit</a>
-                    <a class="btn btn-warning" href="">Delete</a>
+                    <a class="btn btn-warning" href="{% url 'user_delete' %}">Delete</a>
                 </div>
 
 
