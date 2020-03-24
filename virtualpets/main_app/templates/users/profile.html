@@ -5,15 +5,15 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card border border-warning mt-4 text-center">
-                
                 <div class="card-header border-bottom border-warning" id="title">
-                    
-                    <img id="img" alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/I/51YMP-xHfXL.png" class="rounded mb-3"/>
+
+                    <img id="img" alt="Bootstrap Image Preview"
+                        src="https://images-na.ssl-images-amazon.com/images/I/51YMP-xHfXL.png" class="rounded mb-3" />
                     <h1 id="protitle">{{user}}</h1>
                 </div>
-                
+
                 <div class="card-body">
-                    
+
                     <h3 class="text-muted m-2"> <a id="signup" class="text-dark">First Name</a>: {{user.first_name}}
                     </h3>
 
@@ -26,7 +26,6 @@
                     <a class="btn btn-warning" href="{% url 'user_update' %}">Edit</a>
                     <a class="btn btn-warning" href="{% url 'user_delete' %}">Delete</a>
                 </div>
-
 
             </div>
         </div>
