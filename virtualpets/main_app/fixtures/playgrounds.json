@@ -1,0 +1,35 @@
+[
+  {
+    "model": "main_app.playground",
+    "pk": 1,
+    "fields": {
+      "name": "Outer Space",
+      "virtual_location": "Where else? We're floating in space!",
+      "current_capacity": "0",
+      "max_capacity": 5,
+      "features": "Space rocks and trash, zero gravity, solar radiation, satellites, maybe aliens"
+    }
+  },
+  {
+    "model": "main_app.playground",
+    "pk": 2,
+    "fields": {
+      "name": "SF",
+      "virtual_location": "San Francisco, CA, USA, Earth",
+      "current_capacity": "0",
+      "max_capacity": 3,
+      "features": "Beaches, sand, cypress trees, sometimes seals."
+    }
+  },
+  {
+    "model": "main_app.playground",
+    "pk": 3,
+    "fields": {
+      "name": "Underwater",
+      "virtual_location": "About 71% of Earth's surface is covered by water.",
+      "current_capacity": 0,
+      "max_capacity": 3,
+      "features": "Waves, fishes, corals, plastic straws.."
+    }
+  }
+]
