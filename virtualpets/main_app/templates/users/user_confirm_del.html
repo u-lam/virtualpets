@@ -3,7 +3,7 @@
 {% block content %}
   <h1>Delete User?</h1>
 
-  <h4>Are you sure you want to delete <span id="title" class='text-warning'>{{ user.name }}</span>?</h4>
+  <h4>Are you sure you want to delete your account?</h4>
 
   <form action="{% url 'user_delete' %}" method='POST'>
   {% csrf_token %}
