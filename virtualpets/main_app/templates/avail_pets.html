@@ -1,31 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 id="title">Wild Pets</h1>
 
 <div class="container-fluid">
+  <h1 id="title" class="mt-3" >Wild Pets for Adoption</h1>
   <div class="row">
     {% for pet in pets %}
       <div class="col-md-4">
-        <div class="card border border-warning">
-          <div class="card-header text-muted border-bottom border-warning">
-            <a href="{% url 'detail' pet.id %}" class="btn btn-outline-warning btn-block" role="button">{{ pet.name|upper }}</a>
+        <div class="card border border-info">
+          <div class="card-header text-muted border-bottom border-info">
+            <a href="{% url 'detail' pet.id %}" class="btn btn-outline-info btn-block" role="button">{{ pet.name|upper }}</a>
           </div>
             <div class="card-body">
-              <p>Breed: {{ pet.breed}} </p>
-              <p>Description: {{ pet.description}} </p>
-              <p>Color: {{ pet.color}} </p>
+              <p> <d id="petdesc"> Breed :</d> {{ pet.breed}} </p>
+              <p> <d id="petdesc"> Description :</d> {{ pet.description}} </p>
+              <p> <d id="petdesc"> Color :</d> {{ pet.color}} </p>
               {% if pet.age > 0%}
-                <p>Age: {{ pet.age}} </p>
+                <p> <d id="petdesc"> Age :</d> {{ pet.age}} </p>
               {% else %}
-                <p>Age: Little baby</p>
+                <p> <d id="petdesc"> Age :</d> Little baby</p>
               {% endif %}
             </div>
-            <div class='card-action'>
+            <div class='card-action text-center border-top border-info'>
               {% if user.is_authenticated %}
                 <a href="{% url 'adopt_pet' pet.id %}">Adopt Me!</a>
               {% else %}
-                <p style="color:blue" align='center'>Log in to adopt me!</p>
+                <a href="{% url 'login' %}">
+                <p class="btn btn-info">Log in to adopt me!</p>
+                </a>
               {% endif %}
             </div>
           </div>

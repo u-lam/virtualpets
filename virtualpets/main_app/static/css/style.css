@@ -11,15 +11,25 @@ body {
 font-family: 'Rancho', cursive;;
 }
 
-#logotitle{
+#pettitle{
   font-family: 'Rancho', cursive;;
   font-size: 40px;
   }
 
+#logotitle{
+  font-family: 'Rancho', cursive;;
+  font-size: 40px;
+}
+
 #pagetitle{
   font-family: 'Rancho', cursive;;
   font-size: 50px;
-  }
+}
+
+#btntitle{
+  font-family: 'Fredoka One', cursive;;
+  font-size: 20px;
+}
 
 h1 {
   font-family: Arial, Helvetica, sans-serif;
@@ -59,7 +69,11 @@ footer {
 #protitle{
   font-family: 'Rancho', cursive;;
   font-size: 70px;
-  }
+}
+
+#petdesc{
+  font-family: 'Fredoka One', cursive;
+}
 
 /* animal css  */
 

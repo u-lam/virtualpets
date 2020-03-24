@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Delete Pet?</h1>
+<div class="container text-center">
+  <h1 class="mt-3" >Delete Pet?</h1>
 
   <h4>Are you sure you want to delete <span id="title" class='text-warning'>{{ pet.name}}</span>?</h4>
 
-  <form action="{% url 'pets_delete' pet.id %}" method='POST'>
+  <form class="mt-3" action="{% url 'pets_delete' pet.id %}" method='POST'>
   {% csrf_token %}
     <input type="submit" value='Yes' class='btn btn-warning'>
     <a class="btn btn-warning" href="{% url 'detail' pet.id%}">Cancel</a>
   </form>
-
+</div>
 {% endblock  %}
