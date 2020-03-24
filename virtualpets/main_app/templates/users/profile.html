@@ -1,8 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Something {{user}}</h1>
-<h1>first name: {{user.first_name}}</h1>
-<h1>user email: {{user.email}}</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border border-warning mt-4 text-center">
+                
+                <div class="card-header border-bottom border-warning" id="title">
+                    
+                    <img id="img" alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/I/51YMP-xHfXL.png" class="rounded mb-3"/>
+                    <h1 id="title">{{user}}</h1>
+                </div>
+                
+                <div class="card-body">
+                    
+                    <h3 class="text-muted m-2"> <a id="signup" class="text-dark">First Name</a>: {{user.first_name}}
+                    </h3>
+
+                    <h3 class="text-muted mt-2"><a id="signup" class="text-dark">Last Name</a>: {{user.last_name}}</h3>
+                    <h3 class="text-muted mt-2"><a id="signup" class="text-dark">Email</a>: {{user.email}}
+                    </h3>
+                </div>
+
+                <div class='card-action border-top border-warning'>
+                    <a class="btn btn-warning" href="{% url 'user_update' %}">Edit</a>
+                    <a class="btn btn-warning" href="">Delete</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

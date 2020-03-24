@@ -9,7 +9,9 @@
     
       <div class="col-md-4">
         <div class="card border border-warning">
-          <div class="card-header text-muted border-bottom border-warning">
+          <div class="card-header text-muted text-center border-bottom border-warning">
+            <img id="petImg" alt="Bootstrap Image Preview" src="https://images-na.ssl-images-amazon.com/images/I/51YMP-xHfXL.png" class="rounded mb-2"/>
+                    <h1 id="title">{{user}}</h1>
             <a href="{% url 'detail' pet.id %}" class="btn btn-outline-warning btn-block" role="button">{{ pet.name }}</a>
           </div>
             <div class="card-body">

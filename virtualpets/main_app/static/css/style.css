@@ -27,6 +27,15 @@ footer {
   font-family: 'Fredoka One', cursive;
 }
 
+#img{
+  height: 250px;
+  width: 250px;
+}
+#petImg{
+  height: 100px;
+  width: 100px;
+}
+
 
 /* animal css  */
 
