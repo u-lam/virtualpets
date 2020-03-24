@@ -47,3 +47,41 @@ Virtual Pets is a virtual pet simulation game. Adopt a wild animal or create you
         <li>Add Google Map to playgrounds</li>
         <li>Pet trading between users</li>
     </lu>
+    
+<h3>User Story</h3>
+Upon landing on the home page, a user can sign up with his/her name and email address. 
+Users can use his/her credentials to log in.
+
+Once logged in, user can:
+View profile (user detail), 
+Edit profile. Add more info (i.e., first name, last name) to profile (user update)
+Delete profile (user delete)
+
+
+PETS - User can also:
+View all available virtual pets (pet index), 
+Add their own pet to the list (pet create), 
+Select a pet they want to play with (association). A user can have many pets.
+Update pet info (pet update)
+
+<h3>Wireframes</h3>
+<img src="../static/images/home.png">
+<img src="../static/images/about.png">
+<img src="../static/images/petindex.png">
+<img src="../static/images/petdetails.png">
+<img src="../static/images/pgindex.png">
+<img src="../static/images/pgdetails.png">
+<h3>Data Model</h3>
+<img src="../static/images/model.png">
+
+<h3> Milestones</h3>
+- Getting user Auth to work
+- Remove toy associations since the project was based off lab/homework
+- Playground model/view/templates. Decided to not go full CRUD
+- Added concept of wild pets, pets that have no owners. Figured out how to display them for non-logged in users
+- Got forms working for user edit and pet creation/edits
+- Materialize stripped out, replaced with Bootstrap
+- Created home/about pages
+- Fixed not letting pets be part of multiple playgrounds, their owner must remove them from a playrgound before placing them in another.
+- Added full CRUD for User.
+- Added ability to let wild pets become adopted
