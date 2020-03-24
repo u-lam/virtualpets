@@ -21,6 +21,17 @@ def avail_pets(request):
   pets = Pet.objects.filter(user=None)
   return render(request, 'avail_pets.html', { 'pets': pets })
 
+def adopt_pet(request, pet_id):
+  pet = Pet.objects.get(id=pet_id)
+  pets = Pet.objects.filter(user=request.user)
+  wild_pets = Pet.objects.filter(user=None)
+  user = request.user
+  user.pets.add(pet)
+  return render(request, 'pets/index.html', {
+    'pets': pets,
+    'avail_pets': wild_pets
+  })
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
@@ -40,8 +51,11 @@ def signup(request):
 @login_required
 def pets_index(request):
   pets = Pet.objects.filter(user=request.user)
-  wild_pets = Pet.objects.exclude(user=request.user)
-  return render(request, 'pets/index.html', {'pets': pets, 'wild_pets': wild_pets})
+  wild_pets = Pet.objects.filter(user=None)
+  return render(request, 'pets/index.html', {
+    'pets': pets,
+    'avail_pets': wild_pets
+  })
 
 
 @login_required
@@ -77,6 +91,7 @@ def leave_pg(request, pet_id, pg_id):
     Playground.objects.filter(id=pg_id).update(current_capacity=F('current_capacity') - 1)
   return redirect('detail', pet_id=pet_id)  
   
+  
 @login_required 
 def add_feeding(request, pet_id):
   form = FeedingForm(request.POST)
@@ -85,6 +100,7 @@ def add_feeding(request, pet_id):
     new_feeding.pet_id = pet_id
     new_feeding.save()
   return redirect('detail', pet_id=pet_id)
+
 
 @login_required
 def new_pet(request):
@@ -133,6 +149,7 @@ def pg_index(request):
   playgrounds = Playground.objects.all()
   return render(request, 'playgrounds/pg_index.html', {'playgrounds': playgrounds })
 
+
 @login_required
 def pg_detail (request, pg_id):
   playground = Playground.objects.get(id=pg_id)
@@ -141,6 +158,7 @@ def pg_detail (request, pg_id):
     'playground': playground,
     'pets': pets
   })
+
 
 @login_required
 def pg_update(request, pg_id):
@@ -152,6 +170,7 @@ def pg_update(request, pg_id):
       return redirect('pg_detail', playground.id)
   else:
     form = PlaygroundForm(instance=playground)
+  return render(request, 'playgrounds/pg_form.html', {'form': form })
   return render(request, 'playgrounds/pg_form.html', {'form': form })
 
 def user_profile(request):
