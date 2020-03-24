@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="container-fluid">
-  <h1 id="title" class="text-center mt-3">PlayGrounds</h1>
+  <h1 id="pagetitle" class="text-center mt-3">Playgrounds</h1>
   <div class="row mt-3">
     {% for playground in playgrounds %}
     <div class="col-md-6">
@@ -12,16 +12,26 @@
             <h1 id="title">{{ playground.name }}</h1>
           </div>
         </a>
-        <div class="card-body">
-          <p>Location: {{ playground.virtual_location }} </p>
-          <p>Features: {{ playground.features }} </p>
+        <div class="card-body text-muted">
+          <p>
+            <d id="petdesc" class="text-dark">Location :</d> {{ playground.virtual_location }}
+          </p>
+          <p>
+            <d id="petdesc" class="text-dark">Features :</d> {{ playground.features }}
+          </p>
+          
           {% if playground.current_capacity == playground.max_capacity %}
           <br>
-          <p style="color:red">Sorry, this playground is full. Try another playground!</p>
-          {% else %}
-          <p>Current capacity: {{ playground.current_capacity }} </p>
-          <p>Max capacity: {{ playground.max_capacity }} </p>
-          {% endif %}
+            <p class="btn btn-outline-danger btn-disabled justify-content-center">Playground is full. Try another playground!</p>
+            {% else %}
+            <p>
+              <d id="petdesc" class="text-dark">Current capacity :</d> {{ playground.current_capacity }}
+            </p>
+            <p>
+              <d id="petdesc" class="text-dark">Max capacity :</d> {{ playground.max_capacity }}
+            </p>
+            {% endif %}
+          
         </div>
       </div>
     </div>
