@@ -1,1 +1,0 @@
-web: gunicorn <virtualpets>.wsgi
