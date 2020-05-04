@@ -2,7 +2,6 @@
 
 *Check it out <a href="http://ulam10.pythonanywhere.com/">here!</a>
 
-
 Virtual Pets is a virtual pet simulation game. Adopt a wild animal or create your own. Set a feeding schedule for your pets, or add them to a virtual playground to get some exercise while playing with other pets.
 
 <h3>Technologies Used</h3>
