@@ -1,6 +1,7 @@
 <h1>Virtual Pets</h1>
 
 *Check it out <a href="http://ulam10.pythonanywhere.com/">here!</a>
+*Due to deployment issues, PostgreSQL is not available, and I'm currently looking into a workaround. Updated functional app link coming soon!
 
 Virtual Pets is a virtual pet simulation game. Adopt a wild animal or create your own. Set a feeding schedule for your pets, or add them to a virtual playground to get some exercise while playing with other pets.
 
